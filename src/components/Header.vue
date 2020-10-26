@@ -1,19 +1,28 @@
 <template>
 <header>
-  <h1>{{ title }}</h1>
+  <h1 v-on:click="changeTitle">{{ title }}</h1>
 </header>
 </template>
 
 <script>
 export default { 
+      props: {
+        ninjas: {
+          type: Array,
+          required: true
+   }
+},
   data() {
     return {
       title: 'Vue Ninjas'
     }
-    
-  }
+  },
+  methods: {
+   changeTitle:function(){
+     this.title = "Vue Wizards"
+   }
 }
-
+}
 </script>
 
 <style scoped>
@@ -27,4 +36,3 @@ h1{
 }
 
 </style>
-
