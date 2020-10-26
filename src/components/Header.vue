@@ -7,9 +7,9 @@
 <script>
 export default { 
       props: {
-        ninjas: {
-          type: Array,
-          required: true
+        title: {
+          type: String
+          
    }
 },
   data() {
@@ -19,9 +19,9 @@ export default {
   },
   methods: {
    changeTitle:function(){
-     this.title = "Vue Wizards"
+     this.$emit('changeTitle','Vue Wizards');
    }
-}
+  }
 }
 </script>
 
