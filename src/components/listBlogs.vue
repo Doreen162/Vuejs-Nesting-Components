@@ -3,14 +3,14 @@
         <h1>List Blog Titles</h1>
         <input type="text" v-model="search" placeholder="search blogs" />
         <div v-for="blog in filteredBlogs" class="single-blog">
-            <h2>{{ blog.title | to-uppercase}}</h2>
+            <h2>{{ blog.title }}</h2>
         </div>
     </div>
 </template>
 
 <script>
+// Imports
 import searchMixin from '../mixins/searchMixin';
-
 export default {
     data () {
         return {
@@ -22,19 +22,6 @@ export default {
         this.$http.get('http://jsonplaceholder.typicode.com/posts').then(function(data){
             this.blogs = data.body.slice(0,10);
         });
-    },
-     filters: {
-        
-        toUppercase(value){
-            return value.toUpperCase();
-        }
-    },
-    directives: {
-        'rainbow' :{
-            bind(el, binding, vnode){
-                el.style.color = "#" + Math.random().toString(16).slice(2, 8);
-            }
-        }
     },
     mixins: [searchMixin]
 }
