@@ -17,15 +17,16 @@
                 <label>Cheese</label>
                 <input type="checkbox" value="cheese" v-model="blog.categories" />
             </div>
-            <label>Author</label>
+            <label>Author:</label>
             <select v-model="blog.author">
                 <option v-for="author in authors">{{ author }}</option>
             </select>
-             <button v-on:click.prevent="post">Add Blog</button>
-             <div v-if="!submitted">
-               <h3>Thanks for adding your post</h3>
-             </div>
+            <hr />
+            <button v-on:click.prevent="post">Add Blog</button>
         </form>
+        <div v-if="submitted">
+            <h3>Thanks for adding your post</h3>
+        </div>
         <div id="preview">
             <h3>Preview blog</h3>
             <p>Blog title: {{ blog.title }}</p>
@@ -34,8 +35,8 @@
             <p>Blog Categories:</p>
             <ul>
                 <li v-for="category in blog.categories">{{ category }}</li>
-                <p>Author: {{ blog.author }}</p>
             </ul>
+            <p>Author: {{ blog.author }}</p>
         </div>
     </div>
 </template>
@@ -49,21 +50,21 @@ export default {
                 title: '',
                 content: '',
                 categories: [],
-                author: ""
+                author: ''
             },
-            authors: ['The Net Ninja', 'The Angular Avenger', 'THe Vue Vindicator'],
-            submitted: false,
+            authors: ['The Net Ninja', 'The Angular Avenger', 'The Vue Vindicator'],
+            submitted: false
         }
     },
     methods: {
         post: function(){
-            this.$http.post('http://jsonplaceholder.typicode.com/posts',{
+            this.$http.post('http://jsonplaceholder.typicode.com/posts', {
                 title: this.blog.title,
                 body: this.blog.content,
                 userId: 1
             }).then(function(data){
-               console.log(data);
-               this.submitted = true;
+                console.log(data);
+                this.submitted = true;
             });
         }
     }
@@ -101,5 +102,6 @@ h3{
 }
 #checkboxes label{
     display: inline-block;
+    margin-top: 0;
 }
 </style>
